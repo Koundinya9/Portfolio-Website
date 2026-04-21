@@ -1,10 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export default function Home() {
   const [currentRole, setCurrentRole] = useState(0);
   const [fade, setFade] = useState(true);
+  const [timelineProgress, setTimelineProgress] = useState(0);
+  const [activeDates, setActiveDates] = useState<Set<number>>(new Set());
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const dateRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const roles = [
     "I'm an AI Engineer",
@@ -25,6 +29,55 @@ export default function Home() {
 
     return () => clearInterval(interval);
   }, [roles.length]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return;
+
+      const rect = timelineRef.current.getBoundingClientRect();
+      const timelineTop = rect.top + window.scrollY;
+      const timelineHeight = rect.height;
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      // Start filling when timeline enters viewport
+      const start = timelineTop - windowHeight;
+      const end = timelineTop + timelineHeight;
+
+      // Calculate progress (0 to 100)
+      const progress = Math.min(
+        Math.max(((scrollPosition - start) / (end - start)) * 100, 0),
+        100
+      );
+
+      setTimelineProgress(progress);
+
+      // Check which dates should be active
+      const newActiveDates = new Set<number>();
+      dateRefs.current.forEach((dateRef, index) => {
+        if (!dateRef || !timelineRef.current) return;
+
+        const dateRect = dateRef.getBoundingClientRect();
+        const dateTop = dateRect.top + window.scrollY;
+        const timelineTopAbs = timelineRef.current.getBoundingClientRect().top + window.scrollY;
+
+        // Calculate the red line position
+        const redLinePosition = timelineTopAbs + (timelineHeight * progress / 100);
+
+        // If red line has passed this date
+        if (redLinePosition >= dateTop) {
+          newActiveDates.add(index);
+        }
+      });
+
+      setActiveDates(newActiveDates);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial calculation
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -149,6 +202,224 @@ export default function Home() {
               <p className="text-gray-300 text-lg leading-relaxed">
                 Framing machine learning use cases around actual decisions, not just models, especially in business and operational contexts.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="relative min-h-screen bg-transparent py-20 px-6 z-10">
+        <div className="max-w-7xl mx-auto">
+          {/* EDUCATION Label */}
+          <div className="mb-8">
+            <span className="text-red-500 text-base tracking-widest uppercase font-light">EDUCATION</span>
+          </div>
+
+          {/* Main Heading */}
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-20 max-w-5xl">
+            Academic Foundation.
+          </h2>
+
+          {/* Education Cards */}
+          <div className="space-y-8">
+            {/* Carnegie Mellon */}
+            <div className="bg-gray-800 p-10 border border-gray-700 hover:border-red-500 transition-all duration-300">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-3">Carnegie Mellon University, Heinz College</h3>
+                  <p className="text-xl text-red-500 mb-2">Degree: Master's</p>
+                  <p className="text-lg text-gray-300">Master of Information Systems Management with a concentration in Business Intelligence and Data Analytics</p>
+                </div>
+                <div className="text-right mt-4 md:mt-0 flex-shrink-0">
+                  <p className="text-lg text-gray-300">Pittsburgh, Pennsylvania</p>
+                  <p className="text-lg text-gray-400">August 2024 - December 2025</p>
+                </div>
+              </div>
+            </div>
+
+            {/* RV College */}
+            <div className="bg-gray-800 p-10 border border-gray-700 hover:border-red-500 transition-all duration-300">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-3">RV College of Engineering</h3>
+                  <p className="text-xl text-red-500 mb-2">Degree: Bachelor's</p>
+                  <p className="text-lg text-gray-300">Computer Science Engineering</p>
+                </div>
+                <div className="text-right mt-4 md:mt-0 flex-shrink-0">
+                  <p className="text-lg text-gray-300">Bangalore, India</p>
+                  <p className="text-lg text-gray-400">July 2019 - August 2023</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="relative min-h-screen bg-transparent py-20 px-6 z-10">
+        <div className="max-w-7xl mx-auto">
+          {/* EXPERIENCE Label */}
+          <div className="mb-8">
+            <span className="text-red-500 text-base tracking-widest uppercase font-light">EXPERIENCE</span>
+          </div>
+
+          {/* Main Heading */}
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-20 max-w-5xl">
+            Professional Journey.
+          </h2>
+
+          {/* Timeline */}
+          <div className="relative" ref={timelineRef}>
+            {/* Vertical Line - Gray Background */}
+            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gray-700"></div>
+
+            {/* Vertical Line - Red Progress */}
+            <div
+              className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-0.5 bg-red-500"
+              style={{ height: `${timelineProgress}%` }}
+            ></div>
+
+            {/* Experience Items */}
+            <div className="space-y-16">
+              {/* Virtual Gold */}
+              <div className="relative flex flex-col md:flex-row md:items-start gap-8">
+                {/* Timeline Dot */}
+                <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-red-500 rounded-full border-4 border-gray-900"></div>
+
+                {/* Date - Right side on desktop */}
+                <div className="md:w-1/2 md:text-right md:pr-12 pl-8 md:pl-0" ref={(el) => { dateRefs.current[0] = el; }}>
+                  <p className={`text-xl font-semibold transition-colors duration-300 ${activeDates.has(0) ? 'text-red-500' : 'text-gray-700'}`}>
+                    January 2026 - Present
+                  </p>
+                </div>
+
+                {/* Content - Left side on desktop */}
+                <div className="md:w-1/2 md:pl-12 pl-8 md:pl-12">
+                  <div className="bg-gray-800 p-8 border border-gray-700 hover:border-red-500 transition-all duration-300">
+                    <h3 className="text-2xl font-bold text-white mb-2">Consultant - AI Engineer</h3>
+                    <p className="text-xl text-red-500 mb-4">Virtual Gold</p>
+                    <p className="text-lg text-gray-400 mb-4">Pittsburgh, Pennsylvania</p>
+                    <ul className="space-y-3 text-gray-300">
+                      <li className="flex gap-3">
+                        <span className="text-red-500 mt-1.5">▸</span>
+                        <span>Migrated prototype from CrewAI to OpenClaw production architecture and deployed on DigitalOcean with ChatGPT OAuth integration, implementing isolated agent memory, persistent session management, and role-based tool access control</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="text-red-500 mt-1.5">▸</span>
+                        <span>Implemented cost optimization strategy using multi-model routing (Claude Sonnet for complex reasoning, Gemini Flash for summarization), reducing average analysis cost by 40-60%</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="text-red-500 mt-1.5">▸</span>
+                        <span>Developed custom MCP skills for regulatory enforcement tracking and market size estimation, expanding agent capabilities beyond base LLM knowledge</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Sandstorm */}
+              <div className="relative flex flex-col md:flex-row-reverse md:items-start gap-8">
+                {/* Timeline Dot */}
+                <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-red-500 rounded-full border-4 border-gray-900"></div>
+
+                {/* Date - Left side on desktop */}
+                <div className="md:w-1/2 md:text-left md:pl-12 pl-8 md:pl-12" ref={(el) => { dateRefs.current[1] = el; }}>
+                  <p className={`text-xl font-semibold transition-colors duration-300 ${activeDates.has(1) ? 'text-red-500' : 'text-gray-700'}`}>
+                    June 2025 - August 2025
+                  </p>
+                </div>
+
+                {/* Content - Right side on desktop */}
+                <div className="md:w-1/2 md:pr-12 pl-8 md:pl-0">
+                  <div className="bg-gray-800 p-8 border border-gray-700 hover:border-red-500 transition-all duration-300">
+                    <h3 className="text-2xl font-bold text-white mb-2">Intern - Data Science</h3>
+                    <p className="text-xl text-red-500 mb-4">Sandstorm</p>
+                    <p className="text-lg text-gray-400 mb-4">Austin, Texas</p>
+                    <ul className="space-y-3 text-gray-300">
+                      <li className="flex gap-3">
+                        <span className="text-red-500 mt-1.5">▸</span>
+                        <span>Explored applications of Large Language Models (LLMs) for automating ad reporting and creative analysis, reducing manual reporting time by ~40%</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="text-red-500 mt-1.5">▸</span>
+                        <span>Scoped machine learning-based use cases for ROAS forecasting and audience-specific creative recommendations, outlining models projected to improve campaign ROI by 10–15%</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="text-red-500 mt-1.5">▸</span>
+                        <span>Collaborated with founder to design a roadmap for AI adoption in marketing analytics, aligning LLM capabilities with business reporting needs</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* O9 Solutions */}
+              <div className="relative flex flex-col md:flex-row md:items-start gap-8">
+                {/* Timeline Dot */}
+                <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-red-500 rounded-full border-4 border-gray-900"></div>
+
+                {/* Date - Right side on desktop */}
+                <div className="md:w-1/2 md:text-right md:pr-12 pl-8 md:pl-0" ref={(el) => { dateRefs.current[2] = el; }}>
+                  <p className={`text-xl font-semibold transition-colors duration-300 ${activeDates.has(2) ? 'text-red-500' : 'text-gray-700'}`}>
+                    December 2023 - August 2024
+                  </p>
+                </div>
+
+                {/* Content - Left side on desktop */}
+                <div className="md:w-1/2 md:pl-12 pl-8 md:pl-12">
+                  <div className="bg-gray-800 p-8 border border-gray-700 hover:border-red-500 transition-all duration-300">
+                    <h3 className="text-2xl font-bold text-white mb-2">Application Software Engineer</h3>
+                    <p className="text-xl text-red-500 mb-4">O9 Solutions</p>
+                    <p className="text-lg text-gray-400 mb-4">Bangalore, India</p>
+                    <ul className="space-y-3 text-gray-300">
+                      <li className="flex gap-3">
+                        <span className="text-red-500 mt-1.5">▸</span>
+                        <span>Assembled and detailed an End-to-End dataset for the Allocation and Replenishment model, creating a detailed checklist of data required by customers to run Retail functionalities and Supply Chain Analytics</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="text-red-500 mt-1.5">▸</span>
+                        <span>Directed development of plugins to help calculate various important KPIs in platform's pivots, utilizing Python and associated libraries</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="text-red-500 mt-1.5">▸</span>
+                        <span>Created and modified the Demand Planning dataset for testing, designing 3+ time series scenarios and What-If cases, enabling realistic platform demonstrations</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Yellow.ai */}
+              <div className="relative flex flex-col md:flex-row-reverse md:items-start gap-8">
+                {/* Timeline Dot */}
+                <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-red-500 rounded-full border-4 border-gray-900"></div>
+
+                {/* Date - Left side on desktop */}
+                <div className="md:w-1/2 md:text-left md:pl-12 pl-8 md:pl-12" ref={(el) => { dateRefs.current[3] = el; }}>
+                  <p className={`text-xl font-semibold transition-colors duration-300 ${activeDates.has(3) ? 'text-red-500' : 'text-gray-700'}`}>
+                    January 2023 - June 2023
+                  </p>
+                </div>
+
+                {/* Content - Right side on desktop */}
+                <div className="md:w-1/2 md:pr-12 pl-8 md:pl-0">
+                  <div className="bg-gray-800 p-8 border border-gray-700 hover:border-red-500 transition-all duration-300">
+                    <h3 className="text-2xl font-bold text-white mb-2">Intern - Software Engineer</h3>
+                    <p className="text-xl text-red-500 mb-4">Yellow.ai</p>
+                    <p className="text-lg text-gray-400 mb-4">Bangalore, India</p>
+                    <ul className="space-y-3 text-gray-300">
+                      <li className="flex gap-3">
+                        <span className="text-red-500 mt-1.5">▸</span>
+                        <span>Collaborated in the Document Cognition division within the NLP team, analyzing and benchmarking performance of diverse document information search and retrieval models for chatbot during a 6-month engagement</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="text-red-500 mt-1.5">▸</span>
+                        <span>Led testing and evaluation of various Information Retrieval models, improving response accuracy by 6% over the company's chatbot; finalized the best-performing model for further testing</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
