@@ -31,6 +31,28 @@ export default function Home() {
   }, [roles.length]);
 
   useEffect(() => {
+    const handleSmoothScroll = (e: MouseEvent) => {
+      const target = e.target as HTMLAnchorElement;
+      if (target.tagName === 'A' && target.hash) {
+        const href = target.getAttribute('href');
+        if (href?.startsWith('#')) {
+          e.preventDefault();
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }
+        }
+      }
+    };
+
+    document.addEventListener('click', handleSmoothScroll);
+    return () => document.removeEventListener('click', handleSmoothScroll);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (!timelineRef.current) return;
 
@@ -98,7 +120,7 @@ export default function Home() {
 
         <div className="flex gap-6 mb-8">
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/koundinya-pv"
             target="_blank"
             rel="noopener noreferrer"
             className="p-4 border-2 border-gray-700 hover:border-red-500 text-gray-400 hover:text-red-500 transition-all duration-300"
@@ -109,7 +131,7 @@ export default function Home() {
             </svg>
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/Koundinya9"
             target="_blank"
             rel="noopener noreferrer"
             className="p-4 border-2 border-gray-700 hover:border-red-500 text-gray-400 hover:text-red-500 transition-all duration-300"
@@ -120,7 +142,9 @@ export default function Home() {
             </svg>
           </a>
           <a
-            href="/resume.pdf"
+            href="/Koundinya_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 py-3 border-2 border-gray-700 hover:border-red-500 text-gray-400 hover:text-red-500 transition-all duration-300 flex items-center gap-2"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -146,13 +170,13 @@ export default function Home() {
       <section id="about" className="relative min-h-screen bg-transparent py-20 px-6 z-10">
         <div className="max-w-7xl mx-auto">
           {/* ABOUT Label */}
-          <div className="mb-8">
-            <span className="text-red-500 text-base tracking-widest uppercase font-light">ABOUT</span>
+          <div className="mb-8 text-center">
+            <span className="text-red-500 text-xl md:text-2xl tracking-widest uppercase font-light">ABOUT</span>
           </div>
 
           {/* Main Heading */}
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-20 max-w-5xl">
-            AI systems engineer with a data foundation.
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-20 max-w-5xl mx-auto text-center">
+            AI systems engineer with a data foundation
           </h2>
 
           {/* Two Column Content */}
@@ -169,13 +193,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* STRENGTHS Section */}
-          <div className="mb-8">
-            <span className="text-red-500 text-base tracking-widest uppercase font-light">STRENGTHS</span>
-          </div>
-
-          <h3 className="text-4xl md:text-5xl font-bold text-white mb-16">
-            Where I create the most leverage.
+          <h3 className="text-4xl md:text-5xl font-bold text-white mb-16 text-center">
+            Where I create the most leverage
           </h3>
 
           {/* Three Cards */}
@@ -211,13 +230,13 @@ export default function Home() {
       <section id="education" className="relative min-h-screen bg-transparent py-20 px-6 z-10">
         <div className="max-w-7xl mx-auto">
           {/* EDUCATION Label */}
-          <div className="mb-8">
-            <span className="text-red-500 text-base tracking-widest uppercase font-light">EDUCATION</span>
+          <div className="mb-8 text-center">
+            <span className="text-red-500 text-xl md:text-2xl tracking-widest uppercase font-light">EDUCATION</span>
           </div>
 
           {/* Main Heading */}
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-20 max-w-5xl">
-            Academic Foundation.
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-20 max-w-5xl mx-auto text-center">
+            Academic Foundation
           </h2>
 
           {/* Education Cards */}
@@ -259,13 +278,13 @@ export default function Home() {
       <section id="experience" className="relative min-h-screen bg-transparent py-20 px-6 z-10">
         <div className="max-w-7xl mx-auto">
           {/* EXPERIENCE Label */}
-          <div className="mb-8">
-            <span className="text-red-500 text-base tracking-widest uppercase font-light">EXPERIENCE</span>
+          <div className="mb-8 text-center">
+            <span className="text-red-500 text-xl md:text-2xl tracking-widest uppercase font-light">EXPERIENCE</span>
           </div>
 
           {/* Main Heading */}
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-20 max-w-5xl">
-            Professional Journey.
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-20 max-w-5xl mx-auto text-center">
+            Professional Journey
           </h2>
 
           {/* Timeline */}
@@ -429,13 +448,13 @@ export default function Home() {
       <section id="projects" className="relative min-h-screen bg-transparent py-20 px-6 z-10">
         <div className="max-w-7xl mx-auto">
           {/* PROJECTS Label */}
-          <div className="mb-8">
-            <span className="text-red-500 text-base tracking-widest uppercase font-light">PROJECTS</span>
+          <div className="mb-8 text-center">
+            <span className="text-red-500 text-xl md:text-2xl tracking-widest uppercase font-light">PROJECTS</span>
           </div>
 
           {/* Main Heading */}
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-20 max-w-5xl">
-            Some Things I've Built.
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-20 max-w-5xl mx-auto text-center">
+            Some Things I've Built
           </h2>
 
           {/* Projects List */}
@@ -450,7 +469,7 @@ export default function Home() {
               {/* Content */}
               <div>
                 <div className="mb-4">
-                  <span className="text-green-400 text-sm tracking-widest uppercase font-light">Featured Project</span>
+                  <span className="text-red-500 text-sm tracking-widest uppercase font-light">Featured Project</span>
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-6">Enterprise AI Assistant</h3>
                 <div className="bg-gray-800 p-6 border border-gray-700 mb-6">
@@ -496,7 +515,7 @@ export default function Home() {
               {/* Content - Left side */}
               <div className="md:order-1 order-2">
                 <div className="mb-4">
-                  <span className="text-green-400 text-sm tracking-widest uppercase font-light">Featured Project</span>
+                  <span className="text-red-500 text-sm tracking-widest uppercase font-light">Featured Project</span>
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-6">Customized Advert Generator</h3>
                 <div className="bg-gray-800 p-6 border border-gray-700 mb-6">
@@ -552,7 +571,7 @@ export default function Home() {
               {/* Content */}
               <div>
                 <div className="mb-4">
-                  <span className="text-green-400 text-sm tracking-widest uppercase font-light">Featured Project</span>
+                  <span className="text-red-500 text-sm tracking-widest uppercase font-light">Featured Project</span>
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-6">Diabetes Risk Prediction System</h3>
                 <div className="bg-gray-800 p-6 border border-gray-700 mb-6">
@@ -601,7 +620,7 @@ export default function Home() {
         <div className="w-full">
           {/* SKILLS Label */}
           <div className="mb-8 text-center">
-            <span className="text-red-500 text-base tracking-widest uppercase font-light">Skills</span>
+            <span className="text-red-500 text-xl md:text-2xl tracking-widest uppercase font-light">SKILLS</span>
           </div>
 
           {/* Main Heading */}
@@ -650,7 +669,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           {/* CONTACT Label */}
           <div className="mb-8">
-            <span className="text-red-500 text-base tracking-widest uppercase font-light">What's Next?</span>
+            <span className="text-red-500 text-xl md:text-2xl tracking-widest uppercase font-light">What's Next?</span>
           </div>
 
           {/* Main Heading */}
