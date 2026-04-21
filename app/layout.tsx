@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import ParticleBackground from "./components/ParticleBackground";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
@@ -22,7 +23,10 @@ export default function RootLayout({
       lang="en"
       className={`${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className={`${jetbrainsMono.className} min-h-full flex flex-col`}>{children}</body>
+      <body className={`${jetbrainsMono.className} min-h-full flex flex-col`}>
+        <ParticleBackground />
+        {children}
+      </body>
     </html>
   );
 }
