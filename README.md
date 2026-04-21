@@ -2,6 +2,8 @@
 
 A modern, animated portfolio website built with Next.js 16, TypeScript, and Tailwind CSS 4, featuring an interactive particle network background and smooth scrolling animations.
 
+🌐 **Live Site**: [https://koundinya-pullela.vercel.app](https://koundinya-pullela.vercel.app)
+
 ## 🚀 Features
 
 - **Animated Particle Network Background**: Custom canvas-based particle system with mouse interaction and red connection lines
