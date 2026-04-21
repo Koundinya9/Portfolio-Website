@@ -103,18 +103,6 @@ npm start
   - `connectionDistance`: Connection threshold (default: 150px)
 - **Content**: Update sections in `app/page.tsx`
 
-## 📄 License
-
-This project is open source and available under the MIT License.
-
-## 👤 Author
-
-**Venkata Koundinya Pullela**
-
-- LinkedIn: [koundinya-pv](https://www.linkedin.com/in/koundinya-pv)
-- GitHub: [@Koundinya9](https://github.com/Koundinya9)
-- Email: vkpullel@andrew.cmu.edu
-
 ---
 
 Built with ❤️ using Next.js and TypeScript
