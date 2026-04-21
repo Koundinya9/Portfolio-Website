@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website
 
-## Getting Started
+A modern, animated portfolio website built with Next.js 16, TypeScript, and Tailwind CSS 4, featuring an interactive particle network background and smooth scrolling animations.
 
-First, run the development server:
+## 🚀 Features
 
+- **Animated Particle Network Background**: Custom canvas-based particle system with mouse interaction and red connection lines
+- **Smooth Scroll Navigation**: Seamless navigation between sections with smooth scrolling
+- **Responsive Timeline**: Interactive experience timeline with scroll-based animations and color transitions
+- **Infinite Scrolling Skills**: Auto-scrolling technology tags in alternating directions
+- **Modern Design**: Clean, minimalist design with JetBrains Mono font and dark theme
+- **Fully Responsive**: Optimized for all screen sizes
+
+## 🛠️ Built With
+
+- **[Next.js 16](https://nextjs.org/)** - React framework with App Router
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **[Tailwind CSS 4](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[React](https://react.dev/)** - UI component library
+- **Canvas API** - For particle network animations
+- **CSS Animations** - For smooth transitions and scrolling effects
+
+## 📦 Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone git@github.com:Koundinya9/Portfolio-Website.git
+cd Portfolio-Website
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Learn More
+## 🏗️ Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+├── components/
+│   └── ParticleBackground.tsx  # Global particle animation component
+├── page.tsx                     # Main page with all sections
+├── layout.tsx                   # Root layout with font + ParticleBackground
+└── globals.css                  # Global styles and animations
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Sections
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Landing/Hero** - Animated text cycling through roles with social links
+2. **About** - Background, expertise, and key strengths
+3. **Education** - Academic credentials and degrees
+4. **Experience** - Professional journey with interactive timeline
+5. **Projects** - Featured projects with descriptions
+6. **Skills** - Technologies with infinite scrolling animation
+7. **Contact** - Get in touch section with email link
 
-## Deploy on Vercel
+## 🎯 Key Technical Highlights
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Particle Background System
+- 100 particles moving randomly across the screen
+- Particles connect when within 150px of each other (blue lines)
+- Mouse cursor connects to nearby particles (red lines)
+- Fully responsive with window resize handling
+- Fixed position covering entire page across all sections
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Timeline Animation
+- Scroll-based progress bar that fills with red
+- Dates change color when timeline crosses them
+- Smooth transitions using `requestAnimationFrame`
+- Alternating left/right layout on desktop
+
+### Infinite Scrolling Skills
+- 3 rows of technology tags
+- Rows scroll in alternating directions (left→right, right→left)
+- CSS keyframe animations for seamless infinite loops
+- Different speeds for visual variety
+
+## 🚀 Deployment
+
+Build for production:
+```bash
+npm run build
+```
+
+Start production server:
+```bash
+npm start
+```
+
+## 📝 Customization
+
+- **Colors**: Update in `app/globals.css` and throughout components (red-500, gray-800, etc.)
+- **Font**: Change in `app/layout.tsx` (currently JetBrains Mono)
+- **Particle Settings**: Adjust in `app/components/ParticleBackground.tsx`:
+  - `particleCount`: Number of particles (default: 100)
+  - `connectionDistance`: Connection threshold (default: 150px)
+- **Content**: Update sections in `app/page.tsx`
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## 👤 Author
+
+**Venkata Koundinya Pullela**
+
+- LinkedIn: [koundinya-pv](https://www.linkedin.com/in/koundinya-pv)
+- GitHub: [@Koundinya9](https://github.com/Koundinya9)
+- Email: vkpullel@andrew.cmu.edu
+
+---
+
+Built with ❤️ using Next.js and TypeScript
