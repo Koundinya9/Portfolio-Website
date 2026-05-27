@@ -446,7 +446,7 @@ export default function Home() {
 
       {/* Projects Section */}
       <section id="projects" className="relative min-h-screen bg-transparent py-20 px-6 z-10">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-screen-2xl mx-auto">
           {/* PROJECTS Label */}
           <div className="mb-8 text-center">
             <span className="text-red-500 text-xl md:text-2xl tracking-widest uppercase font-light">PROJECTS</span>
@@ -462,10 +462,9 @@ export default function Home() {
             {/* Enterprise AI Assistant */}
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Image */}
-              <div className="bg-gray-800 border border-gray-700 aspect-video flex items-center justify-center">
-                <span className="text-gray-600 text-2xl">Project Screenshot</span>
+              <div className="border border-gray-700">
+                <img src="https://raw.githubusercontent.com/Koundinya9/Capstone-Project/main/screenshots/home.png" alt="Enterprise AI Assistant screenshot" className="w-full h-auto" />
               </div>
-
               {/* Content */}
               <div>
                 <div className="mb-4">
@@ -476,26 +475,28 @@ export default function Home() {
                   <ul className="space-y-3 text-gray-300 text-lg">
                     <li className="flex gap-3">
                       <span className="text-red-500 mt-1.5">▸</span>
-                      <span>Architected multi-agent LLM system with 12 specialized agents (competitive intelligence, financial analysis, regulatory monitoring) coordinating across Claude, Gemini, and GPT models to automate competitor research and strategic analysis</span>
+                      <span>Architected multi-agent LLM system using CrewAI with 12 specialized agents (competitive intelligence, financial analysis, regulatory monitoring) powered by Gemini 2.5 Flash and Groq Llama3-70B to automate competitor research and strategic analysis</span>
                     </li>
                     <li className="flex gap-3">
                       <span className="text-red-500 mt-1.5">▸</span>
-                      <span>Implemented RAG-based retrieval pipeline using vector embeddings and contextual indexing to improve enterprise query accuracy and reduce hallucinated responses during knowledge retrieval</span>
+                      <span>Built financial document analysis pipeline supporting 10-K filings, earnings reports, and PDFs — with AI-generated summaries, ratio analysis, risk assessment, and document-grounded chat</span>
                     </li>
                     <li className="flex gap-3">
                       <span className="text-red-500 mt-1.5">▸</span>
-                      <span>Built conversational analytics dashboard enabling real-time executive querying and automated strategic summaries</span>
+                      <span>Integrated real-time web search (SerperDev) and knowledge graph (NetworkX) for live competitive intelligence reports covering competitor moves, markets, products, and regulatory threats</span>
                     </li>
                   </ul>
                 </div>
                 <div className="flex flex-wrap gap-3 mb-6">
                   <span className="text-gray-400">Python</span>
-                  <span className="text-gray-400">LangChain</span>
-                  <span className="text-gray-400">RAG</span>
-                  <span className="text-gray-400">Vector DB</span>
+                  <span className="text-gray-400">CrewAI</span>
+                  <span className="text-gray-400">Gemini</span>
+                  <span className="text-gray-400">Groq</span>
+                  <span className="text-gray-400">Streamlit</span>
+                  <span className="text-gray-400">NetworkX</span>
                 </div>
                 <div className="flex gap-4">
-                  <a href="#" className="p-3 border-2 border-gray-700 hover:border-red-500 text-gray-400 hover:text-red-500 transition-all duration-300">
+                  <a href="https://github.com/Koundinya9/Capstone-Project" target="_blank" rel="noopener noreferrer" className="p-3 border-2 border-gray-700 hover:border-red-500 text-gray-400 hover:text-red-500 transition-all duration-300">
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
@@ -541,7 +542,7 @@ export default function Home() {
                   <span className="text-gray-400">Python</span>
                 </div>
                 <div className="flex gap-4">
-                  <a href="#" className="p-3 border-2 border-gray-700 hover:border-red-500 text-gray-400 hover:text-red-500 transition-all duration-300">
+                  <a href="https://github.com/Koundinya9/Adverstory" target="_blank" rel="noopener noreferrer" className="p-3 border-2 border-gray-700 hover:border-red-500 text-gray-400 hover:text-red-500 transition-all duration-300">
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
@@ -556,8 +557,61 @@ export default function Home() {
               </div>
 
               {/* Image - Right side */}
-              <div className="bg-gray-800 border border-gray-700 aspect-video flex items-center justify-center md:order-2 order-1">
-                <span className="text-gray-600 text-2xl">Project Screenshot</span>
+              <div className="bg-gray-800 border border-gray-700 aspect-video overflow-hidden md:order-2 order-1">
+                <img src="https://raw.githubusercontent.com/Koundinya9/Adverstory/main/screenshots/storyboard.png" alt="Adverstory storyboard screenshot" className="w-full h-full object-cover object-left" />
+              </div>
+            </div>
+
+            {/* BucketList Journal */}
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Content - Left side */}
+              <div className="md:order-1 order-2">
+                <div className="mb-4">
+                  <span className="text-red-500 text-sm tracking-widest uppercase font-light">Featured Project</span>
+                </div>
+                <h3 className="text-3xl font-bold text-white mb-6">BucketList Journal</h3>
+                <div className="bg-gray-800 p-6 border border-gray-700 mb-6">
+                  <ul className="space-y-3 text-gray-300 text-lg">
+                    <li className="flex gap-3">
+                      <span className="text-red-500 mt-1.5">▸</span>
+                      <span>Built full-stack travel tracking app with interactive world map (Leaflet.js) showing visited, bucket list, and lived-in countries — plus 251 curated national parks across 63 countries in a dedicated wildlife mode</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-red-500 mt-1.5">▸</span>
+                      <span>Integrated Google Gemini API to parse free-text travel narratives into structured journal entries, reducing manual data entry friction</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-red-500 mt-1.5">▸</span>
+                      <span>Designed REST API with Node.js/Express backed by SQL.js (SQLite in WebAssembly) for persistent cross-session storage with full CRUD support</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="flex flex-wrap gap-3 mb-6">
+                  <span className="text-gray-400">React</span>
+                  <span className="text-gray-400">TypeScript</span>
+                  <span className="text-gray-400">Node.js</span>
+                  <span className="text-gray-400">Leaflet.js</span>
+                  <span className="text-gray-400">Gemini API</span>
+                  <span className="text-gray-400">SQLite</span>
+                </div>
+                <div className="flex gap-4">
+                  <a href="https://github.com/Koundinya9/BucketList" target="_blank" rel="noopener noreferrer" className="p-3 border-2 border-gray-700 hover:border-red-500 text-gray-400 hover:text-red-500 transition-all duration-300">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                  </a>
+                  <a href="#" className="px-6 py-3 border-2 border-gray-700 hover:border-red-500 text-gray-400 hover:text-red-500 transition-all duration-300 flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+
+              {/* Image - Right side */}
+              <div className="md:order-2 order-1 border border-gray-700 overflow-hidden h-72 md:h-80">
+                <img src="https://raw.githubusercontent.com/Koundinya9/BucketList/main/Screenshots/worldmap.png" alt="BucketList Journal screenshot" className="w-full h-full object-cover object-left" />
               </div>
             </div>
 
